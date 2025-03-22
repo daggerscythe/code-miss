@@ -12,7 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/OBJLoader.js"></script>
 
+    <script src="intro.js" defer></script>
     <script src="script.js" defer></script>
+
 </head>
 <body>
     <a-scene>
@@ -22,13 +24,14 @@
         </a-entity>
 
         <!-- City Ground -->
-        <a-plane position="0 0 0" rotation="-90 0 0" width="50" height="50" color="gray"></a-plane>
+        <a-plane src="url(models/textures/ground.jpg)"position="0 0 0" rotation="-90 0 0" width="50" height="50"></a-plane>
 
-        <!-- Building -->
-        <!-- <a-box position="0 2 -5" width="3" height="4" depth="3" color="blue"></a-box> -->
+        <!--Sky-->
+        <a-sky src="url(models/textures/sky.jpg)"></a-sky>
 
-        <!-- Model Loader Script -->
-        <a-entity id="weir" obj-model="obj: url(models/weir.obj); mtl: url(models/weir.mtl)" scale="10 10 10"></a-entity>
+
+        <!-- Weir Hall -->
+        <a-entity id="weir" obj-model="obj: url(models/weir.obj); mtl: url(models/weir.mtl)" scale="10 10 10" position="0 0 -10"></a-entity>
 
     </a-scene>
 </body>
