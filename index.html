@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code City</title>
 
-    <!-- Load A-Frame library -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    
-    <!-- Load Three.js and OBJLoader (for model loading) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/OBJLoader.js"></script>
 
@@ -19,21 +16,36 @@
 <body>
     <a-scene>
         <!-- Player Camera -->
-        <a-entity position="0 1.6 0">
+        <a-entity id="camera" position="0 1.6 0">
             <a-camera></a-camera>
         </a-entity>
-
-        <!-- City Ground -->
-        <a-plane src="url(models/textures/ground.jpg)"position="0 0 0" rotation="-90 0 0" width="50" height="50"></a-plane>
+    
+        <!-- Fade Overlay -->
+        <a-entity id="fadeOverlay" geometry="primitive: plane; width: 10; height: 10"
+                  material="color: black; opacity: 1" position="0 2 -1"></a-entity>
+    
+        <!-- Game Title Text (Initially Hidden) -->
+        <a-text id="gameTitle" 
+                value="CODE CITY" 
+                position="0 2 -2"
+                color="white" 
+                anchor="center" 
+                scale="2 2 2"
+                visible="true">   
+        </a-text>
 
         <!--Sky-->
-        <a-sky src="url(models/textures/sky.jpg)"></a-sky>
-
-
-        <!-- Weir Hall -->
-        <a-entity id="weir" obj-model="obj: url(models/weir.obj); mtl: url(models/weir.mtl)" scale="10 10 10" position="0 0 -10"></a-entity>
-
+        <a-sky id="sky" src="url(models/textures/sky.jpg)"></a-sky>
+    
+        <!-- City Ground (This will be removed later) -->
+        <a-plane id="ground" src="url(models/textures/ground.jpg)" position="0 0 0"
+                 rotation="-90 0 0" width="50" height="50"></a-plane>
+    
+        <!-- Old Model (Weir Hall) -->
+        <a-entity id="weir" obj-model="obj: url(models/weir.obj); mtl: url(models/weir.mtl)"
+                  scale="10 10 10" position="0 0 -10"></a-entity>
     </a-scene>
+    
 </body>
 </html>
 
