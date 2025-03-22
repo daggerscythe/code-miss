@@ -28,20 +28,15 @@
         <!-- <a-box position="0 2 -5" width="3" height="4" depth="3" color="blue"></a-box> -->
 
         <!-- Model Loader Script -->
-        <a-entity id="weir" obj-model="obj: url(models/weir.obj)" scale="10 10 10"></a-entity>
+        <a-entity id="weir" obj-model="obj: url(models/weir.obj); mtl: url(models/weir.mtl)" scale="10 10 10"></a-entity>
 
     </a-scene>
 </body>
 </html>
 
 <script>
-    // This part is to load and add a 3D model using OBJLoader (not needed for simple A-Frame usage)
-    // If you plan on using Three.js for advanced loading, it would go here, but A-Frame's obj-model component already handles it
-
     const loader = new THREE.OBJLoader();
     loader.load('models/weir.obj', function (object) {
-        // If you're manually using Three.js, you'd need to add the object to a Three.js scene
-        // However, A-Frame will handle the model directly if you use the `obj-model` component
         console.log('Model loaded');
     }, undefined, function (error) {
         console.error('Error loading model:', error);
