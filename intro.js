@@ -83,7 +83,7 @@ function addCharacters() {
     );
 
     // Add LOD (Level of Detail) to optimize performance
-    entity.setAttribute("shadow", "cast: true; receive: true");
+    // entity.setAttribute("shadow", "cast: true; receive: true");
 
     // Add collision body - use cylinder for better character collision
     const collider = document.createElement("a-cylinder");
@@ -138,7 +138,7 @@ function startCutscene() {
     const playerEntity = document.querySelector("#player");
     playerEntity.setAttribute("animation", {
       property: "position",
-      to: "0 0 -5", // Move player entity
+      to: "0 1.6 -5", // Move player entity
       dur: 5000,
       easing: "easeInOutQuad",
     });
@@ -186,7 +186,7 @@ function startCutscene() {
       const classroomFloor = document.createElement("a-entity");
       classroomFloor.setAttribute(
         "geometry",
-        "primitive: plane; width: 40; height: 40"
+        "primitive: plane; width: 40; height: 40" // Keep this geometry definition
       );
       classroomFloor.setAttribute("position", "0 0 -10");
       classroomFloor.setAttribute("rotation", "-90 0 0");
@@ -217,7 +217,7 @@ function startCutscene() {
       scene.appendChild(newModel);
       console.log("New scene added.");
 
-      addCharacters();
+      addCharacters(); // Ensure NPCs are added after the new scene is loaded
 
       // FADE-IN (Reveal new scene)
       fadeOverlay.setAttribute("animation", {
@@ -229,3 +229,4 @@ function startCutscene() {
     }, 2000); // Wait for fade-out before loading new scene
   }, 8000); // Scene change happens after camera move
 }
+startCutscene();

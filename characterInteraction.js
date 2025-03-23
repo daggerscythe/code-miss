@@ -14,8 +14,8 @@ AFRAME.registerComponent("character-interaction", {
     // Make entity clickable
     el.classList.add("clickable");
 
-    // Store reference to the character's position for text bubble placement
-    this.worldPosition = new THREE.Vector3();
+    // Initialize a vector for world position
+    this.worldPosition = new AFRAME.THREE.Vector3(); // Use AFRAME.THREE to ensure compatibility
 
     // Setup click handler
     this.clickHandler = () => {
