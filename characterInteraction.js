@@ -138,6 +138,8 @@ AFRAME.registerComponent("character-interaction", {
         body: playerMessage,
       });
       const data = await res.json();
+      let utterance = new SpeechSynthesisUtterance(data.llm_response || "Sorry, I couldn't process your response.");
+      speechSynthesis.speak(utterance);
       return data.llm_response || "Sorry, I couldn't process your response.";
     } catch (err) {
       console.error("Error fetching NPC response:", err);
