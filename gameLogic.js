@@ -3,6 +3,7 @@ let peopleJoined = 0;
 let gameTimer;
 let gameWon = false;
 
+
 function startTimer() {
   gameTimer = setInterval(() => {
     timeLeft--;
@@ -20,18 +21,15 @@ function updateTimerDisplay() {
 }
 
 function personJoined() {
-    console.log('Box clicked!');  // Debugging line
-    if (gameWon) return; // If the game is already won, don't process any further clicks
+    if (gameWon) return;
     peopleJoined++;
-    console.log(`People joined: ${peopleJoined}`);  // Debugging line
     if (peopleJoined >= 3) {
-      clearInterval(gameTimer);
-      gameWon = true;
-      gameWonDisplay();
+        clearInterval(gameTimer);
+        gameWon = true;
+        gameWonDisplay();
     }
-    updateTimerDisplay(); // Update the counter for joined people
-  }
-  
+    updateTimerDisplay();
+}
 
 function gameWonDisplay() {
   const winText = document.createElement('div');
