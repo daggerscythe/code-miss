@@ -4,22 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code City</title>
+    <style>
+        /* Make the timer fixed at the top of the screen */
+        #timer {
+          position: fixed;
+          top: 20px; /* Adjust as needed */
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 2em; /* Adjust font size as needed */
+          color: white; /* Set text color */
+          z-index: 1000; /* Ensure it's above everything else */
+          font-family: Arial, sans-serif; /* Optional: Set font family */
+        }
+        #joinedCounter {
+            position: fixed;
+            top: 60px; /* Adjust position below the timer */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            color: white;
+            z-index: 1000;
+            font-family: Arial, sans-serif;
+        }    
+        #crosshair {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 10px; /* Adjust the size of the square */
+            height: 10px; /* Adjust the size of the square */
+            background-color: white; /* Set the color of the crosshair */
+            transform: translate(-50%, -50%); /* Centers the square */
+            z-index: 1000; /* Ensures it stays on top */
+        }
+    </style>
 
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/OBJLoader.js"></script>
 
     <script src="intro.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="gameLogic.js"></script>
 
 </head>
 <body>
+    <div id="timer">Time Left: 180s</div>
+    <div id="joinedCounter">People Joined: 0</div> 
+    <div id="crosshair"></div>
     <a-scene>
         <!-- Player Camera -->
         <a-entity id="camera" position="0 1.6 0">
-            <a-camera></a-camera>
+            <a-camera look-controls="pointerLockEnabled: true;"></a-camera>
         </a-entity>
-    
+  
+
         <!-- Fade Overlay -->
         <a-entity id="fadeOverlay" geometry="primitive: plane; width: 10; height: 10"
                   material="color: black; opacity: 1" position="0 2 -1"></a-entity>
@@ -43,7 +80,10 @@
     
         <!-- Old Model (Weir Hall) -->
         <a-entity id="weir" obj-model="obj: url(models/weir.obj); mtl: url(models/weir.mtl)"
-                  scale="10 10 10" position="0 0 -10"></a-entity>
+                  scale="10 10 10" position="0 0 -10">
+        </a-entity>
+
+        <a-box id="person" position="0 1 -5" color="#4CC3D9" event-set__click="_event: click; _target: #person; personJoined"></a-box>
     </a-scene>
     
 </body>

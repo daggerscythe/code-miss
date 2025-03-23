@@ -146,12 +146,6 @@ function startCutscene() {
 
             addCharacters();
 
-            // Trigger physics updates
-            setTimeout(() => {
-                // You may need to call this manually to update the physics system
-                scene.systems.physics.update();
-            }, 500);
-
             // FADE-IN (Reveal new scene)
             fadeOverlay.setAttribute('animation', {
                 property: 'material.opacity',
