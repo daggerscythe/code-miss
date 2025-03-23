@@ -1,7 +1,7 @@
 // Character personalities (can stay)
 character_personas = [
   {name: "Mora Jones", personality:"Mora Jones is a male student with interests in League of Legends, lifting weights, partying, and eating. He is charismatic but lazy, well-liked, yet struggles with discipline. Mora is overconfident and believes he can succeed in computer science without putting in much effort. He tends to think in the short term and prioritizes gaming, parties, and the gym over activities like coding practice. Mora’s ambitions include wanting a high-paying tech job at a big company and balancing a luxurious lifestyle with minimal effort. However, he is unsure how to achieve these goals. His strengths include being physically disciplined, charismatic, and good at socializing. On the other hand, his weaknesses are significant: he procrastinates, skips classes, avoids internships, coding practice, and networking, and performs poorly in class. Mora’s habits reflect his lack of focus; he often watches tutorials but never finishes them and spends more time slacking off than building a resume with relevant experience. Internally, he feels guilty about wasting time but cannot seem to stop. He enjoys the idea of success more than working to achieve it and frequently considers switching majors, though he fears starting over. Externally, Mora feels inadequate compared to classmates who perform better than him. He folds under peer pressure, and his friends encourage his partying and gaming habits. Mora has recently realized that his lack of coding skills is holding him back from landing internships or side gigs. He’s also noticed that some of his gaming friends are making money through game modding or app development, which has sparked a slight interest in coding. While he still prefers gaming and partying, he’s starting to see coding as a way to fund his luxurious lifestyle without too much effort."},
-  {name:"Emily Carter",personality:"Emily Carter is a female English Literature major with interests in creative writing, painting, and hiking. She is introverted, thoughtful, and highly imaginative, often getting lost in her own world. Emily is empathetic and sensitive to others' emotions but can be overly self-critical. She aspires to become a published author and travel the world to gather inspiration for her stories. Her strengths include excellent storytelling, creative problem-solving, and connecting with people emotionally. However, she struggles with self-doubt, avoids confrontation, and has difficulty managing time. Emily writes in her journal daily, spends hours sketching or painting, and often procrastinates on assignments. Internally, she feels torn between pursuing her passion for writing and meeting societal expectations of a stable career. Externally, her family pressures her to choose a more ",personality:" major, and she feels isolated in her creative pursuits. Emily’s growth potential lies in joining a writing group or finding a mentor to help her gain confidence and refine her craft. Emily has recently discovered interactive storytelling and digital art platforms that require basic coding skills to create immersive experiences. She’s fascinated by the idea of combining her love for writing and art with technology to create something unique. While she’s hesitant about the technical aspects, she’s curious to learn how coding can enhance her creative projects."},
+  {name:"Emily Carter",personality:"Emily Carter is a female English Literature major with interests in creative writing, painting, and hiking. She is introverted, thoughtful, and highly imaginative, often getting lost in her own world. Emily is empathetic and sensitive to others' emotions but can be overly self-critical. She aspires to become a published author and travel the world to gather inspiration for her stories. Her strengths include excellent storytelling, creative problem-solving, and connecting with people emotionally. However, she struggles with self-doubt, avoids confrontation, and has difficulty managing time. Emily writes in her journal daily, spends hours sketching or painting, and often procrastinates on assignments. Internally, she feels torn between pursuing her passion for writing and meeting societal expectations of a stable career. Externally, her family pressures her to choose a more technical major, and she feels isolated in her creative pursuits. Emily’s growth potential lies in joining a writing group or finding a mentor to help her gain confidence and refine her craft. Emily has recently discovered interactive storytelling and digital art platforms that require basic coding skills to create immersive experiences. She’s fascinated by the idea of combining her love for writing and art with technology to create something unique. While she’s hesitant about the technical aspects, she’s curious to learn how coding can enhance her creative projects."},
   {name:"Alex Rivera",personality:"Alex Rivera is a male Computer Science major with interests in robotics, coding, and playing the guitar. He is analytical, curious, and slightly reserved, enjoying tackling complex challenges but can be perfectionistic. Alex aims to work in artificial intelligence research and develop innovative technologies. He sees the coding club as an opportunity to collaborate on robotics or AI projects with like-minded peers. He’s also interested in mentoring others to improve his communication skills and build a stronger network. His strengths include being highly skilled in programming, logical thinking, and working independently. However, he struggles with social interactions, tends to overthink, and can be overly critical of himself and others. Alex spends hours tinkering with robotics projects, practices coding daily, and often forgets to take breaks. Internally, he feels pressure to excel in a competitive field while maintaining a work-life balance. Externally, peers often see him as aloof, and he struggles to collaborate in group projects. Alex’s growth potential lies in learning to communicate better and embracing teamwork."},
   {name:"Sophia Lee", personality:"Sophia Lee is a female Fashion Design major with interests in fashion design, photography, and traveling. She is outgoing, creative, and ambitious, loving to express herself through art and design. Sophia dreams of launching her own fashion brand and showcasing her work at international fashion shows. Recently, she has become interested in wearable technology and how coding can be used to create innovative fashion designs, such as LED clothing or smart fabrics. She sees coding as a way to stand out in the competitive fashion industry and is eager to learn how technology can enhance her designs. Her strengths include being highly creative, excellent at networking, and having a keen eye for detail. However, she can be impulsive, struggles with financial planning, and sometimes takes on too many projects at once. Sophia sketches designs daily, follows fashion blogs religiously, and often stays up late working on projects. Internally, she worries about whether her designs will be accepted in the competitive fashion industry. Externally, she faces criticism from peers who don’t take her passion seriously and struggles to secure funding for her projects. Sophia’s growth potential lies in building a strong portfolio and finding a mentor in the fashion industry to achieve her dreams."},
   {name:"Daniel Kim",personality:"Daniel Kim is a male Sports Management major with interests in basketball, video games, and cooking. He is easygoing, friendly, and competitive, enjoying being around people but can be overly laid-back. Daniel aspires to become a sports analyst or coach and eventually open his own restaurant. Recently, he has started exploring sports analytics and how coding can be used to analyze player performance or game strategies. He’s also interested in creating a mobile app for his future restaurant or a gaming app related to basketball. While he’s not a natural coder, he’s curious about how it can help him achieve his goals in sports and business. His strengths include being great at teamwork, having strong leadership skills, and being a quick learner. However, he struggles with time management, can be indecisive, and sometimes prioritizes fun over responsibilities. Daniel plays basketball regularly, experiments with new recipes, and often procrastinates on schoolwork. Internally, he feels torn between pursuing a career in sports and his passion for cooking. Externally, friends often distract him from his goals, and he struggles to stay focused in class. Daniel’s growth potential lies in setting clear goals and finding a balance between his interests to succeed."},
@@ -16,7 +16,7 @@ function random_persona_generator() {
 
 // Cutscene + character setup
 document.addEventListener('DOMContentLoaded', function () {
-  setTimeout(startCutscene, 1000);
+  showTutorialScreen(); // Call the tutorial screen directly
 });
 
 // Only cutscene + spawn logic now
@@ -110,4 +110,47 @@ function startCutscene() {
       }, 2000);
 
   }, 8000);
+}
+
+function showTutorialScreen() {
+  // Create a container for the tutorial screen
+  const tutorialContainer = document.createElement("div");
+  tutorialContainer.id = "tutorial-screen";
+  tutorialContainer.style.position = "fixed";
+  tutorialContainer.style.top = "0";
+  tutorialContainer.style.left = "0";
+  tutorialContainer.style.width = "100%";
+  tutorialContainer.style.height = "100%";
+  tutorialContainer.style.backgroundColor = "rgb(0, 0, 0)";
+  tutorialContainer.style.color = "white";
+  tutorialContainer.style.display = "flex";
+  tutorialContainer.style.flexDirection = "column";
+  tutorialContainer.style.justifyContent = "center";
+  tutorialContainer.style.alignItems = "center";
+  tutorialContainer.style.fontFamily = "Orbitron, sans-serif";
+  tutorialContainer.style.zIndex = "1002";
+
+  // Add tutorial text
+  const tutorialText = document.createElement("div");
+  tutorialText.innerHTML = `
+    <h1 style="font-size: 3em; color: #FFD700; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Welcome!</h1>
+    <p style="font-size: 1.5em; margin: 10px 0;">WASD to move.</p>
+    <p style="font-size: 1.5em; margin: 10px 0;">Click to Talk.</p>
+    <p style="font-size: 1.5em; margin: 10px 0;">Get 3 people to join the Coding Club before the timer runs out!</p>
+  `;
+  tutorialText.style.textAlign = "center";
+  tutorialText.style.lineHeight = "1.5";
+
+  // Append the text to the container
+  tutorialContainer.appendChild(tutorialText);
+
+  // Append the container to the body
+  document.body.appendChild(tutorialContainer);
+
+  // Remove the tutorial screen after 5 seconds
+  setTimeout(() => {
+    tutorialContainer.remove();
+    startCutscene(); // Start the cutscene after the tutorial
+    startTimer(); // Start the timer after the tutorial
+  }, 5000);
 }

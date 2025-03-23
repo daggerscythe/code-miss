@@ -11,37 +11,100 @@
            left: 50%;
            transform: translateX(-50%);
            font-size: 2em; 
-           color: white; 
+           color: #4CAF50; /* Green for a positive vibe */
+           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
            z-index: 1000; 
-           font-family: Arial, sans-serif;
+           font-family: "Orbitron", sans-serif; /* Futuristic font */
+           background-color: rgba(0, 0, 0, 0.7);
+           padding: 10px 20px;
+           border-radius: 10px;
+           border: 2px solid #4CAF50;
         }
         #joinedCounter {
              position: fixed;
-             top: 60px; 
+             top: 90px; 
              left: 50%;
              transform: translateX(-50%);
              font-size: 1.5em;
-             color: white;
+             color: #FFD700; /* Gold for emphasis */
+             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
              z-index: 1000;
-             font-family: Arial, sans-serif;
+             font-family: "Orbitron", sans-serif;
+             background-color: rgba(0, 0, 0, 0.7);
+             padding: 10px 20px;
+             border-radius: 10px;
+             border: 2px solid #FFD700;
         }    
         #crosshair {
              position: fixed;
              top: 50%;
              left: 50%;
-             width: 10px; 
-             height: 10px;
-             background-color: white; 
+             width: 12px; 
+             height: 12px;
+             background-color: transparent; 
+             border: 2px solid white;
+             border-radius: 50%;
              transform: translate(-50%, -50%);
              z-index: 1000;
+             box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        #crosshair::before,
+        #crosshair::after {
+            content: "";
+            position: absolute;
+            background-color: white;
+        }
+        #crosshair::before {
+            width: 2px;
+            height: 8px;
+            top: 2px;
+            left: 5px;
+        }
+        #crosshair::after {
+            width: 8px;
+            height: 2px;
+            top: 5px;
+            left: 2px;
+        }
+        #text-box-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-family: "Orbitron", sans-serif;
+            z-index: 1001;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #4CAF50;
+        }
+        #text-box-container input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            margin-bottom: 10px;
         }
         #text-box-container input:focus {
-          outline: none;
-          box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
         }
-      
+        #text-box-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
         #text-box-container button:hover {
-          background-color: #45a049;
+            background-color: #45a049;
         }
     </style>
  

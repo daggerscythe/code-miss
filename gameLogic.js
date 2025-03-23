@@ -6,13 +6,13 @@ let timeLeft = 180; //3 minutes
  
  function startTimer() {
   gameTimer = setInterval(() => {
-    timeLeft--;
+    timeLeft--; // Decrement by 1 instead of 3
     if (timeLeft <= 0) {
       clearInterval(gameTimer);
       gameLost();
     }
     updateTimerDisplay();
-  }, 1000);
+  }, 1000); // Run every 1 second
  }
  
  function updateTimerDisplay() {
@@ -55,5 +55,3 @@ let timeLeft = 180; //3 minutes
   loseText.style.color = "red";
   document.body.appendChild(loseText);
  }
-
- startTimer();
