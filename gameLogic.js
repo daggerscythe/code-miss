@@ -21,6 +21,7 @@ function updateTimerDisplay() {
 }
 
 function personJoined() {
+    console.log("clicked");
     if (gameWon) return;
     peopleJoined++;
     if (peopleJoined >= 3) {

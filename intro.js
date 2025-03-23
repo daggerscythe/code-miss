@@ -23,6 +23,8 @@ function addCharacters() {
     luffy.setAttribute("position", "0 0 -17"); // Position it in the scene
     luffy.setAttribute("rotation", "0 0 0");
     luffy.setAttribute('visible', 'true');
+    luffy.setAttribute('class', 'collidable');
+    luffy.setAttribute('geometry', 'primitive: box');
 
     const fstud1 = document.createElement("a-entity");
     fstud1.setAttribute("id", "character");

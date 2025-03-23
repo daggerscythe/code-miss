@@ -53,9 +53,12 @@
     <a-scene>
         <!-- Player Camera -->
         <a-entity id="camera" position="0 1.6 0">
-            <a-camera look-controls="pointerLockEnabled: true;"></a-camera>
+            <a-camera look-controls="pointerLockEnabled: true;" raycatser="objects: .clickable"></a-camera>
         </a-entity>
-  
+        
+        <!-- <a-entity id="player" >
+            <a-entity collider-check raycaster="objects: .collidable; showLine:true;" position="0 1 0"></a-entity>
+        </a-entity> -->
 
         <!-- Fade Overlay -->
         <a-entity id="fadeOverlay" geometry="primitive: plane; width: 10; height: 10"
@@ -82,7 +85,8 @@
         <a-entity id="weir" obj-model="obj: url(models/weir.obj); mtl: url(models/weir.mtl)"
                   scale="10 10 10" position="0 0 -10"></a-entity>
 
-                  <a-box id="person" position="0 1 -5" color="#4CC3D9" event-set__click="_event: click; _target: #person; personJoined"></a-box>
+        <a-box id="person" position="0 1 -5" color="#4CC3D9" onclick="personJoined()"></a-box>
+        <!-- <button id="buton" >Click me!</button> -->
     </a-scene>
     
 </body>
@@ -96,9 +100,17 @@
         console.error('Error loading model:', error);
     });
 
+    
     // Your player script could be handled within the A-Frame scene itself or via a script
     document.addEventListener("DOMContentLoaded", function () {
         console.log("Game Loaded");
+
+
+        const person1 = document.getElementById('buton').addEventListener("click", () =>{
+            console.log("clicke!");
+                        peopleJoined+=1;
+
+        });
 
         // Create a player entity dynamically with movement controls in A-Frame
         let scene = document.querySelector("a-scene");
