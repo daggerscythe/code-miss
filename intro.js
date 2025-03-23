@@ -108,14 +108,24 @@ function showTextBox(promptMessage) {
     button.style.fontSize = "1em";
     button.style.cursor = "pointer";
 
-    // Handle button click
-    button.onclick = () => {
+    // Handle input submission
+    const submitInput = () => {
       const playerMessage = input.value.trim();
       if (playerMessage) {
         container.remove();
         resolve(playerMessage);
       }
     };
+
+    // Add event listener for the button click
+    button.onclick = submitInput;
+
+    // Add event listener for the "Enter" key
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        submitInput();
+      }
+    });
 
     // Append elements to the container
     container.appendChild(promptElement);
