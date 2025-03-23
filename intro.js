@@ -28,38 +28,43 @@ document.querySelector("a-scene").addEventListener("click", async (event) => {
     const chosen_personality = character_personas[chosen_personality_number];
 
     // Conversation loop
-    while (!joined) {
-      // Show a text box for the player's input
-      const playerMessage = await showTextBox("Type your response to the NPC:");
-
-      // Call the LLM API to get the NPC's response
-      const npcResponse = await fetch(
-        `http://localhost:8000/llm_input/${chosen_personality.name}/${chosen_personality.personality}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "text/plain" },
-          body: playerMessage,
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => data.llm_response)
-        .catch((error) => {
-          console.error("Error fetching NPC response:", error);
-          return "Sorry, I couldn't process your response.";
-        });
-
-      // Display the NPC's response
-      alert(`NPC: ${npcResponse}`);
-
-      // Check if the NPC wants to join (1 for yes, 0 for no)
-      if (npcResponse.trim().endsWith("1")) {
-        joined = true;
+    for (let i = 0; i < 3; i++) {
+      if(joined){
+        personJoined();
+        break;
       }
-    }
+      else{
+          // Show a text box for the player's input
+        const playerMessage = await showTextBox("Type your response to the NPC:");
 
-    // Remove the NPC model and call personJoined()
+        // Call the LLM API to get the NPC's response
+        const npcResponse = await fetch(
+          `http://localhost:8000/llm_input/${chosen_personality.name}/${chosen_personality.personality}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "text/plain" },
+            body: playerMessage,
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => data.llm_response)
+          .catch((error) => {
+            console.error("Error fetching NPC response:", error);
+            return "Sorry, I couldn't process your response.";
+          });
+
+        // Display the NPC's response
+        alert(`NPC: ${npcResponse}`);
+
+        // Check if the NPC wants to join (1 for yes, 0 for no)
+        if (npcResponse.trim().endsWith("1")) {
+          joined = true;
+        }
+      }
+      
+      
+    }
     intersectedEl.remove();
-    personJoined();
   }
 });
 
