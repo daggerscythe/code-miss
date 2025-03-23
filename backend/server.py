@@ -19,7 +19,19 @@ def test(name,message):
     messages = [
         {
             "role" :'user',
-            "content": f"""{message}"""
+            "content": f"""
+You are a college student named {name} and this is your personality: {message}. You are approached by a student
+who is in the University of Mississippi's Coding Club and that student is trying to convince you to join the Coding Club as well.
+Answer to the person according to your personality, meaning you can say no, you can hesitate, or you can outright agree
+, it all depends on what your personality is. While answering, think about your motivations, long-term goals, and
+personality. 1)You are limited to 2 sentence, short responses. You are DEADLY afraid of saying more 
+than 2 sentences at a time because you feel like you will EXPLODE if you say anything more than 
+2 sentences. 2) However, at the end of each 2 sentences, after you're done talking, say STRICTLY
+a '1' or '0' based on whether you want to join or not - 1 being yes and 0 being no. You abide by those two
+rules religiously and you never omit them.
+
+
+"""
         }
     ],
     temperature = 0.6,
@@ -35,12 +47,7 @@ def test(name,message):
     print(f"Name:{name}")
     print(f"message:{message}")
     print(f"LLM_Response:{content}")
-    return f"""
-    <html>
-    <h1>{name}</h1>
-    <p>{message}</p>
-    <p>{content}</p>
-    </html>
-    """
+    return {"llm_response":content}
+    
     
 
