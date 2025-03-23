@@ -1,7 +1,15 @@
 import openai
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials = True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 client = openai.Client(base_url="http://172.30.80.17:50001/v1",api_key="KqV9ZvFghHnafzvMM7Gr18cnCHT0kPoo")
 model_name = client.models.list().data[0].id
 @app.post("/llm_input/{name}/{message}")
@@ -31,6 +39,7 @@ def test(name,message):
     <html>
     <h1>{name}</h1>
     <p>{message}</p>
+    <p>{content}</p>
     </html>
     """
     
