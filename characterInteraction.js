@@ -19,12 +19,95 @@ AFRAME.registerComponent("character-interaction", {
 
     // Setup click handler
     this.clickHandler = () => {
-      this.showTextBubble(data.message);
-      // Also count as a "joined" person for the game mechanic
-      window.personJoined();
+      this.showTextBox(data.message);
     };
 
     el.addEventListener("click", this.clickHandler);
+  },
+
+  showTextBox: function (npcMessage) {
+    // Remove any existing text box
+    this.removeTextBox();
+
+    // Create a container for the text box
+    const container = document.createElement("div");
+    container.id = "text-box-container";
+    container.style.position = "fixed";
+    container.style.bottom = "20px";
+    container.style.left = "50%";
+    container.style.transform = "translateX(-50%)";
+    container.style.width = "80%";
+    container.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+    container.style.padding = "10px";
+    container.style.borderRadius = "10px";
+    container.style.color = "white";
+    container.style.fontFamily = "Arial, sans-serif";
+    container.style.zIndex = "1001";
+
+    // Add NPC message
+    const npcMessageElement = document.createElement("div");
+    npcMessageElement.textContent = npcMessage;
+    npcMessageElement.style.marginBottom = "10px";
+
+    // Add input box
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "Type your response...";
+    input.style.width = "calc(100% - 20px)";
+    input.style.padding = "10px";
+    input.style.border = "none";
+    input.style.borderRadius = "5px";
+    input.style.fontSize = "1em";
+
+    // Add submit button
+    const button = document.createElement("button");
+    button.textContent = "Send";
+    button.style.marginTop = "10px";
+    button.style.padding = "10px 20px";
+    button.style.border = "none";
+    button.style.borderRadius = "5px";
+    button.style.backgroundColor = "#4CAF50";
+    button.style.color = "white";
+    button.style.fontSize = "1em";
+    button.style.cursor = "pointer";
+
+    // Handle button click
+    button.onclick = () => {
+      const playerMessage = input.value.trim();
+      if (playerMessage) {
+        console.log(`Player: ${playerMessage}`);
+        this.handleNpcResponse(playerMessage);
+      }
+    };
+
+    // Append elements to the container
+    container.appendChild(npcMessageElement);
+    container.appendChild(input);
+    container.appendChild(button);
+
+    // Append container to the body
+    document.body.appendChild(container);
+
+    // Focus on the input box
+    input.focus();
+  },
+
+  handleNpcResponse: function (playerMessage) {
+    // Simulate NPC response
+    const npcResponse = `You said: "${playerMessage}". Nice to meet you!`;
+
+    // Display NPC response
+    alert(npcResponse);
+
+    // Remove the text box
+    this.removeTextBox();
+  },
+
+  removeTextBox: function () {
+    const existingContainer = document.getElementById("text-box-container");
+    if (existingContainer) {
+      existingContainer.remove();
+    }
   },
 
   showTextBubble: function (text) {
@@ -128,5 +211,6 @@ AFRAME.registerComponent("character-interaction", {
   remove: function () {
     this.el.removeEventListener("click", this.clickHandler);
     this.removeTextBubble();
+    this.removeTextBox();
   },
 });

@@ -30,7 +30,6 @@ than 2 sentences at a time because you feel like you will EXPLODE if you say any
 a '1' or '0' based on whether you want to join or not - 1 being yes and 0 being no. You abide by those two
 rules religiously and you never omit them.
 
-
 """
         }
     ],
