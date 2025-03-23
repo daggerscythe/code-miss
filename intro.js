@@ -2,6 +2,86 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(startCutscene, 1000);
 });
 
+
+function addCharacters() {
+    // Wait until the scene has transitioned
+    const scene = document.querySelector("a-scene");
+
+    // Create the ground with collision
+    const ground = document.createElement("a-plane");
+    ground.setAttribute("id", "ground");
+    ground.setAttribute("width", "100");
+    ground.setAttribute("height", "100");
+    ground.setAttribute("color", "#7CFC00");
+    ground.setAttribute("position", "-90 0 0");
+    ground.setAttribute('static-body', '');  // Add static-body to the ground to make it immovable
+    scene.appendChild(ground);
+
+
+    // Add the character model after cutscene
+    const miku = document.createElement("a-entity");
+    miku.setAttribute("id", "character");
+    miku.setAttribute("gltf-model", "url(models/miku.glb)"); // Use your model file
+    miku.setAttribute("scale", "0.0025 0.0025 0.0025"); // Adjust size if necessary
+    miku.setAttribute("position", "0 0 -10"); // Position it in the scene
+    miku.setAttribute("rotation", "0 180 0");
+    miku.setAttribute('visible', 'true');
+    miku.setAttribute('dynamic-body', 'shape: box; halfExtents: 0.5 1 0.5');
+
+    const luffy = document.createElement("a-entity");
+    luffy.setAttribute("id", "character");
+    luffy.setAttribute("gltf-model", "url(models/luffy.glb)"); // Use your model file
+    luffy.setAttribute("scale", "2.5 2.5 2.5"); // Adjust size if necessary
+    luffy.setAttribute("position", "0 0 -17"); // Position it in the scene
+    luffy.setAttribute("rotation", "0 0 0");
+    luffy.setAttribute('visible', 'true');
+    luffy.setAttribute('dynamic-body', 'shape: box; halfExtents: 0.5 1 0.5');
+
+    const fstud1 = document.createElement("a-entity");
+    fstud1.setAttribute("id", "character");
+    fstud1.setAttribute("gltf-model", "url(models/fstud1.glb)"); // Use your model file
+    fstud1.setAttribute("scale", "2.75 2.75 2.75"); // Adjust size if necessary
+    fstud1.setAttribute("position", "-17 0 -1"); // Position it in the scene
+    fstud1.setAttribute("rotation", "0 180 0");
+    fstud1.setAttribute('visible', 'true');
+    fstud1.setAttribute('dynamic-body', 'shape: box; halfExtents: 0.5 1 0.5');
+    
+
+    const fstud2 = document.createElement("a-entity");
+    fstud2.setAttribute("id", "character");
+    fstud2.setAttribute("gltf-model", "url(models/fstud2.glb)"); // Use your model file
+    fstud2.setAttribute("scale", "2.75 2.75 2.75"); // Adjust size if necessary
+    fstud2.setAttribute("position", "-22 0 -17"); // Position it in the scene
+    fstud2.setAttribute("rotation", "0 180 0");
+    fstud2.setAttribute('visible', 'true');
+    fstud2.setAttribute('dynamic-body', 'shape: box; halfExtents: 0.5 1 0.5');
+
+    const fstud3 = document.createElement("a-entity");
+    fstud3.setAttribute("id", "character");
+    fstud3.setAttribute("gltf-model", "url(models/fstud3.glb)"); // Use your model file
+    fstud3.setAttribute("scale", "2.75 2.75 2.75"); // Adjust size if necessary
+    fstud3.setAttribute("position", "-10 0 -4"); // Position it in the scene
+    fstud3.setAttribute("rotation", "0 180 0");
+    fstud3.setAttribute('visible', 'true');
+    fstud3.setAttribute('dynamic-body', 'shape: box; halfExtents: 0.5 1 0.5');
+
+    const fstud4 = document.createElement("a-entity");
+    fstud4.setAttribute("id", "character");
+    fstud4.setAttribute("gltf-model", "url(models/fstud4.glb)"); // Use your model file
+    fstud4.setAttribute("scale", "2 2 2"); // Adjust size if necessary
+    fstud4.setAttribute("position", "-10 0 -15"); // Position it in the scene
+    fstud4.setAttribute("rotation", "0 0 0");
+    fstud4.setAttribute('visible', 'true');
+    fstud4.setAttribute('dynamic-body', 'shape: box;');
+    
+    scene.appendChild(miku);
+    scene.appendChild(luffy);
+    scene.appendChild(fstud1);
+    scene.appendChild(fstud2);
+    scene.appendChild(fstud3);
+    scene.appendChild(fstud4);
+}
+
 function startCutscene() {
     console.log("Starting Cutscene");
 
@@ -25,6 +105,7 @@ function startCutscene() {
             dur: 2000,
             easing: 'linear'
         });
+
 
         // Hide game title after fade-in completes
         setTimeout(() => {
@@ -73,9 +154,17 @@ function startCutscene() {
             newModel.setAttribute("gltf-model", "models/classroom.glb");
             newModel.setAttribute("scale", "2 2 2");
             newModel.setAttribute("position", "0 0 -10");
-
+            newModel.setAttribute('dynamic-body', 'shape: box;');
             scene.appendChild(newModel);
             console.log("New scene added.");
+
+            addCharacters();
+
+            // Trigger physics updates
+            setTimeout(() => {
+                // You may need to call this manually to update the physics system
+                scene.systems.physics.update();
+            }, 500);
 
             // FADE-IN (Reveal new scene)
             fadeOverlay.setAttribute('animation', {
@@ -88,4 +177,8 @@ function startCutscene() {
         }, 2000); // Wait for fade-out before loading new scene
 
     }, 8000); // Scene change happens after camera move
+
+
+
 }
+startCutscene();
