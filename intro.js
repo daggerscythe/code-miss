@@ -7,17 +7,6 @@ function addCharacters() {
     // Wait until the scene has transitioned
     const scene = document.querySelector("a-scene");
 
-    // Create the ground with collision
-    const ground = document.createElement("a-plane");
-    ground.setAttribute("id", "ground");
-    ground.setAttribute("width", "100");
-    ground.setAttribute("height", "100");
-    ground.setAttribute("color", "#7CFC00");
-    ground.setAttribute("position", "-90 0 0");
-    ground.setAttribute('static-body', '');  // Add static-body to the ground to make it immovable
-    scene.appendChild(ground);
-
-
     // Add the character model after cutscene
     const miku = document.createElement("a-entity");
     miku.setAttribute("id", "character");
@@ -26,7 +15,6 @@ function addCharacters() {
     miku.setAttribute("position", "0 0 -10"); // Position it in the scene
     miku.setAttribute("rotation", "0 180 0");
     miku.setAttribute('visible', 'true');
-    miku.setAttribute('dynamic-body', 'shape: box; halfExtents: 0.5 1 0.5');
 
     const luffy = document.createElement("a-entity");
     luffy.setAttribute("id", "character");
@@ -35,7 +23,6 @@ function addCharacters() {
     luffy.setAttribute("position", "0 0 -17"); // Position it in the scene
     luffy.setAttribute("rotation", "0 0 0");
     luffy.setAttribute('visible', 'true');
-    luffy.setAttribute('dynamic-body', 'shape: box; halfExtents: 0.5 1 0.5');
 
     const fstud1 = document.createElement("a-entity");
     fstud1.setAttribute("id", "character");
@@ -44,7 +31,6 @@ function addCharacters() {
     fstud1.setAttribute("position", "-17 0 -1"); // Position it in the scene
     fstud1.setAttribute("rotation", "0 180 0");
     fstud1.setAttribute('visible', 'true');
-    fstud1.setAttribute('dynamic-body', 'shape: box; halfExtents: 0.5 1 0.5');
     
 
     const fstud2 = document.createElement("a-entity");
@@ -54,7 +40,6 @@ function addCharacters() {
     fstud2.setAttribute("position", "-22 0 -17"); // Position it in the scene
     fstud2.setAttribute("rotation", "0 180 0");
     fstud2.setAttribute('visible', 'true');
-    fstud2.setAttribute('dynamic-body', 'shape: box; halfExtents: 0.5 1 0.5');
 
     const fstud3 = document.createElement("a-entity");
     fstud3.setAttribute("id", "character");
@@ -63,7 +48,6 @@ function addCharacters() {
     fstud3.setAttribute("position", "-10 0 -4"); // Position it in the scene
     fstud3.setAttribute("rotation", "0 180 0");
     fstud3.setAttribute('visible', 'true');
-    fstud3.setAttribute('dynamic-body', 'shape: box; halfExtents: 0.5 1 0.5');
 
     const fstud4 = document.createElement("a-entity");
     fstud4.setAttribute("id", "character");
@@ -72,8 +56,9 @@ function addCharacters() {
     fstud4.setAttribute("position", "-10 0 -15"); // Position it in the scene
     fstud4.setAttribute("rotation", "0 0 0");
     fstud4.setAttribute('visible', 'true');
-    fstud4.setAttribute('dynamic-body', 'shape: box;');
     
+
+    // Add character to the scene
     scene.appendChild(miku);
     scene.appendChild(luffy);
     scene.appendChild(fstud1);
@@ -154,7 +139,8 @@ function startCutscene() {
             newModel.setAttribute("gltf-model", "models/classroom.glb");
             newModel.setAttribute("scale", "2 2 2");
             newModel.setAttribute("position", "0 0 -10");
-            newModel.setAttribute('dynamic-body', 'shape: box;');
+            newModel.setAttribute("static-body", "");
+
             scene.appendChild(newModel);
             console.log("New scene added.");
 
