@@ -127,16 +127,15 @@
     <div id="joinedCounter">People Joined: 0/5</div>
     <div id="crosshair"></div>
     <a-scene
-      physics="debug: false; driver: ammo; gravity: -9.8; iterations: 10;"
+      physics="debug: false; gravity: -9.8; iterations: 10;"
       renderer="antialias: true; physicallyCorrectLights: true; gammaOutput: true; exposure: 1.2;"
     >
       <!-- Player Camera with Proper Controls -->
       <a-entity
         id="player"
-        movement-controls="speed: 0.3; constrainToNavMesh: false;" <!-- Removed fly: true -->
+        movement-controls="speed: 0.3; constrainToNavMesh: false;"
         wasd-controls="acceleration: 20;"
-        dynamic-body="mass: 1; height: 2; linearDamping: 0; angularDamping: 0;" <!-- Ensure dynamic-body is configured -->
-      >
+        dynamic-body="mass: 1; height: 2; linearDamping: 0; angularDamping: 0;">
         <a-entity
           id="camera"
           position="0 1.6 0"
@@ -189,7 +188,7 @@
         rotation="-90 0 0"
         width="50"
         height="50"
-        static-body="mass: 0" <!-- Ensure ground has static-body -->
+        static-body="mass: 0"
       ></a-plane>
 
       <!-- Old Model (Weir Hall) -->
@@ -208,7 +207,7 @@
         width="100"
         height="100"
         visible="false"
-        static-body="mass: 0" <!-- Ensure collision floor has static-body -->
+        static-body="mass: 0"
       ></a-plane>
     </a-scene>
   </body>

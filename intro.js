@@ -2,104 +2,44 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(startCutscene, 1000);
 });
 
-// Character dialogue messages
-const characterMessages = {
-  miku: "Hello! I'm Miku! Want to join our coding club?",
-  luffy: "I'm gonna be king of the programmers!",
-  fstud1: "Have you finished the algorithms assignment yet?",
-  fstud2: "This class is so difficult...",
-  fstud3: "Can I borrow your notes?",
-  fstud4: "Did you hear about the new JavaScript framework?",
-};
-
 function addCharacters() {
   // Wait until the scene has transitioned
   const scene = document.querySelector("a-scene");
+  // Add Miku model
+  const miku = document.createElement("a-entity");
+  miku.setAttribute("id", "character");
+  miku.setAttribute("gltf-model", "url(models/miku.glb)");
+  miku.setAttribute("scale", "0.0025 0.0025 0.0025");
+  miku.setAttribute("position", "0 2 -10");  // Positioned above the ground
+  miku.setAttribute("rotation", "0 180 0");
+  miku.setAttribute('visible', 'true');
+  miku.setAttribute('dynamic-body', 'shape: box;');  // Adding a collision body
 
-  // Create character models with optimized settings
-  const characters = [
-    {
-      id: "miku",
-      model: "models/miku.glb",
-      scale: "0.0025 0.0025 0.0025",
-      position: "0 0 -10",
-      rotation: "0 180 0",
-      message: characterMessages.miku,
-    },
-    {
-      id: "luffy",
-      model: "models/luffy.glb",
-      scale: "2.5 2.5 2.5",
-      position: "0 0 -17",
-      rotation: "0 0 0",
-      message: characterMessages.luffy,
-    },
-    {
-      id: "fstud1",
-      model: "models/fstud1.glb",
-      scale: "2.75 2.75 2.75",
-      position: "-17 0 -1",
-      rotation: "0 180 0",
-      message: characterMessages.fstud1,
-    },
-    {
-      id: "fstud2",
-      model: "models/fstud2.glb",
-      scale: "2.75 2.75 2.75",
-      position: "-22 0 -17",
-      rotation: "0 180 0",
-      message: characterMessages.fstud2,
-    },
-    {
-      id: "fstud3",
-      model: "models/fstud3.glb",
-      scale: "2.75 2.75 2.75",
-      position: "-10 0 -4",
-      rotation: "0 180 0",
-      message: characterMessages.fstud3,
-    },
-    {
-      id: "fstud4",
-      model: "models/fstud4.glb",
-      scale: "2 2 2",
-      position: "-10 0 -15",
-      rotation: "0 0 0",
-      message: characterMessages.fstud4,
-    },
-  ];
+  // Add Luffy model
+  const luffy = document.createElement("a-entity");
+  luffy.setAttribute("id", "character");
+  luffy.setAttribute("gltf-model", "url(models/luffy.glb)");
+  luffy.setAttribute("scale", "2.5 2.5 2.5");
+  luffy.setAttribute("position", "0 2 -17");  // Positioned above the ground
+  luffy.setAttribute("rotation", "0 0 0");
+  luffy.setAttribute('visible', 'true');
+  luffy.setAttribute('dynamic-body', 'shape: box;');  // Adding collision body
 
-  // Add each character to the scene with proper interaction
-  characters.forEach((char, index) => {
-    const entity = document.createElement("a-entity");
-    entity.setAttribute("id", char.id);
-    entity.setAttribute("gltf-model", `url(${char.model})`);
-    entity.setAttribute("scale", char.scale);
-    entity.setAttribute("position", char.position);
-    entity.setAttribute("rotation", char.rotation);
-    entity.setAttribute("visible", "true");
-    entity.setAttribute(
-      "character-interaction",
-      `message: ${char.message}; character: ${char.id}`
-    );
+  // Add other characters...
+  // Example for another character
+  const fstud1 = document.createElement("a-entity");
+  fstud1.setAttribute("id", "character");
+  fstud1.setAttribute("gltf-model", "url(models/fstud1.glb)");
+  fstud1.setAttribute("scale", "2.75 2.75 2.75");
+  fstud1.setAttribute("position", "-17 2 -1");  // Positioned above the ground
+  fstud1.setAttribute("rotation", "0 180 0");
+  fstud1.setAttribute('visible', 'true');
+  fstud1.setAttribute('dynamic-body', 'shape: box;');  // Adding collision body
 
-    // Add LOD (Level of Detail) to optimize performance
-    // entity.setAttribute("shadow", "cast: true; receive: true");
-
-    // Add collision body - use cylinder for better character collision
-    const collider = document.createElement("a-cylinder");
-    collider.setAttribute("radius", "0.5");
-    collider.setAttribute("height", "1.8");
-    collider.setAttribute("static-body", "");
-    collider.setAttribute("visible", "false");
-    collider.setAttribute("position", "0 0.9 0"); // Center vertically on character
-
-    entity.appendChild(collider);
-
-    // Slight delay between character additions to prevent frame drops
-    setTimeout(() => {
-      scene.appendChild(entity);
-    }, index * 100);
-  });
+  // Add the models to the scene
+  scene.appendChild(miku);
+  scene.appendChild(luffy);
+  scene.appendChild(fstud1);
 }
 
 function startCutscene() {
@@ -117,6 +57,7 @@ function startCutscene() {
     return;
   }
 
+  
   // FADE-IN (Reveal the scene)
   setTimeout(() => {
     fadeOverlay.setAttribute("animation", {
@@ -217,7 +158,10 @@ function startCutscene() {
       scene.appendChild(newModel);
       console.log("New scene added.");
 
-      addCharacters(); // Ensure NPCs are added after the new scene is loaded
+       // Ensure that the characters are added after the new scene is loaded
+      setTimeout(() => {
+        addCharacters(); // Ensure NPCs are added after the new scene is loaded
+      }, 2000); // Delay to ensure everything is in place before adding characters
 
       // FADE-IN (Reveal new scene)
       fadeOverlay.setAttribute("animation", {
