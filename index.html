@@ -8,21 +8,18 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/OBJLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@master/dist/aframe-physics-system.min.js"></script>
-
 
     <script src="intro.js" defer></script>
     <script src="script.js" defer></script>
 
 </head>
 <body>
-    <a-scene physics="gravity: -9.8">
-        <!--Player-->
-        <a-entity id="player" position="0 1.6 0" wasd-controls="acceleration: 20" 
-              movement-controls dynamic-body>
-        <a-camera id="camera" position="0 1.6 0"></a-camera>
+    <a-scene>
+        <!-- Player Camera -->
+        <a-entity id="camera" position="0 1.6 0">
+            <a-camera></a-camera>
         </a-entity>
-
+    
         <!-- Fade Overlay -->
         <a-entity id="fadeOverlay" geometry="primitive: plane; width: 10; height: 10"
                   material="color: black; opacity: 1" position="0 2 -1"></a-entity>
@@ -42,11 +39,11 @@
     
         <!-- City Ground (This will be removed later) -->
         <a-plane id="ground" src="url(models/textures/ground.jpg)" position="0 0 0"
-                 rotation="-90 0 0" width="50" height="50" static-body></a-plane>
+                 rotation="-90 0 0" width="50" height="50"></a-plane>
     
         <!-- Old Model (Weir Hall) -->
         <a-entity id="weir" obj-model="obj: url(models/weir.obj); mtl: url(models/weir.mtl)"
-                  scale="10 10 10" position="0 0 -10" static-body></a-entity>
+                  scale="10 10 10" position="0 0 -10"></a-entity>
     </a-scene>
     
 </body>
