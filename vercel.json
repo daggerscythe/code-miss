@@ -1,6 +1,23 @@
 {
-  "rewrites": [
-    { "source": "/llm_input", "destination": "/backend/server.py" },
-    { "source": "/(.*)", "destination": "/$1" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/server.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "models/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "textures/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/llm_input",
+      "dest": "backend/server.py"
+    }
   ]
 }
