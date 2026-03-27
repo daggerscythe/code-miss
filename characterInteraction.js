@@ -132,7 +132,7 @@ AFRAME.registerComponent("character-interaction", {
 
   fetchNpcResponse: async function (persona, playerMessage) {
     try {
-      const res = await fetch("https://codemiss.vercel.app/llm_input", {
+      const res = await fetch("https://code-miss.vercel.app/llm_input", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
