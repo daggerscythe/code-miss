@@ -132,11 +132,16 @@ AFRAME.registerComponent("character-interaction", {
 
   fetchNpcResponse: async function (persona, playerMessage) {
     try {
-      const res = await fetch(`http://localhost:8000/llm_input/${persona.name}/${persona.personality}`, {
+      const res = await fetch(`http://localhost:8000/llm_input`, {
         method: "POST",
-        headers: { "Content-Type": "text/plain" },
-        body: playerMessage,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: persona.name,
+          personality: persona.personality,
+          player_message: playerMessage
+        }),
       });
+      
       const data = await res.json();
       let utterance = new SpeechSynthesisUtterance(data.llm_response || "Sorry, I couldn't process your response.");
       speechSynthesis.speak(utterance);
