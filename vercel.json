@@ -4,14 +4,6 @@
     {
       "src": "backend/server.py",
       "use": "@vercel/python"
-    },
-    {
-      "src": "models/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "models/textures/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
