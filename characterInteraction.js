@@ -132,7 +132,7 @@ AFRAME.registerComponent("character-interaction", {
 
   fetchNpcResponse: async function (persona, playerMessage) {
     try {
-      const res = await fetch(`http://localhost:8000/llm_input`, {
+      const res = await fetch("https://codemiss.vercel.app/llm_input", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -141,7 +141,7 @@ AFRAME.registerComponent("character-interaction", {
           player_message: playerMessage
         }),
       });
-      
+
       const data = await res.json();
       let utterance = new SpeechSynthesisUtterance(data.llm_response || "Sorry, I couldn't process your response.");
       speechSynthesis.speak(utterance);

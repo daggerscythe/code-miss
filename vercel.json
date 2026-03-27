@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/llm_input", "destination": "/backend/server.py" },
+    { "source": "/(.*)", "destination": "/$1" }
+  ]
+}
