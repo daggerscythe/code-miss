@@ -10,7 +10,7 @@
       "use": "@vercel/static"
     },
     {
-      "src": "textures/**",
+      "src": "models/textures/**",
       "use": "@vercel/static"
     }
   ],
